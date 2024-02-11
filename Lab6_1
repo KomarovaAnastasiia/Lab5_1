@@ -1,0 +1,93 @@
+#include <iostream>
+#include <string>
+
+using namespace std;
+
+// Клас точка
+class Point {
+protected:
+    double x, y;
+public:
+    // Конструктор за замовчуванням
+    Point() : x(0), y(0) {}
+    
+    // Конструктор з параметрами
+    Point(double x_val, double y_val) : x(x_val), y(y_val) {}
+
+    // Деструктор
+    ~Point() {}
+
+    // Функція друку
+    void print() const {
+        cout << "(" << x << ", " << y << ")";
+    }
+
+    // Функція перепризначення координат точки
+    void setCoordinates(double x_val, double y_val) {
+        x = x_val;
+        y = y_val;
+    }
+};
+
+// Похідний клас - кольорова точка
+class ColoredPoint : public Point {
+private:
+    string color;
+public:
+    // Конструктор за замовчуванням
+    ColoredPoint() : color("black") {}
+
+    // Конструктор з параметрами
+    ColoredPoint(double x_val, double y_val, string color_val) : Point(x_val, y_val), color(color_val) {}
+
+    // Деструктор
+    ~ColoredPoint() {}
+
+    // Функція друку
+    void print() const {
+        cout << "(" << x << ", " << y << ") - " << color;
+    }
+
+    // Функція перепризначення кольору
+    void setColor(string color_val) {
+        color = color_val;
+    }
+
+    // Функція виведення координат точки
+    void printCoordinates() const {
+        cout << "(" << x << ", " << y << ")";
+    }
+};
+
+int main() {
+    // Тестування класу Point
+    Point p1(3.5, 4.2);
+    cout << "Point p1: ";
+    p1.print();
+    cout << endl;
+
+    // Тестування функції перепризначення координат
+    p1.setCoordinates(5.1, 6.3);
+    cout << "New coordinates of p1: ";
+    p1.print();
+    cout << endl << endl;
+
+    // Тестування класу ColoredPoint
+    ColoredPoint cp1(2.0, 1.0, "red");
+    cout << "Colored Point cp1: ";
+    cp1.print();
+    cout << endl;
+
+    // Тестування функції перепризначення кольору
+    cp1.setColor("blue");
+    cout << "New color of cp1: ";
+    cp1.print();
+    cout << endl;
+
+    // Тестування функції виведення координат точки
+    cout << "Coordinates of cp1: ";
+    cp1.printCoordinates();
+    cout << endl;
+
+    return 0;
+}
